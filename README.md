@@ -1,1 +1,4 @@
 # Gaming Buddy
+With the increase in students attending UNB, the population of gamers in Fredericton has increased significantly. While it is still enjoyable to play games alone, they are much more enjoyable when played with others. However, it's a struggle to find other individuals who play the same games as you.
+
+Gaming Buddy looks to change that by being the bridge between fellow gamers in Fredericton. Users can create accounts, add the games they enjoy playing, and then search on the Gaming Buddy system for people who play the same games in Fredericton. Once users have found similar gamers, they can add each other as friends and enjoy chatting and playing games together.
