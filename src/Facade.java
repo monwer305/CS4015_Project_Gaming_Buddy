@@ -10,6 +10,7 @@ import player.PlayerFactory;
 import player.PlayerNotificationObserver;
 import session.GamingSession;
 import session.MultiPlayerStrategy;
+import session.SinglePlayerStrategy;
 
 public class Facade {
     public GamingBuddyInterface getGamingBuddy(){
@@ -27,11 +28,8 @@ public class Facade {
     public Command getInviteCommand(Player p1, Player p2){
         return new InvitePlayerCommand(p1, p2);
     }
-    public void executeCommand(CommandInvoker cI){
-        cI.executeCommand();
-    }
-    public void setCommand(CommandInvoker cI,Command c){
-        cI.setCommand(c);
+    public void executeCommand(CommandInvoker cI,Command c){
+        cI.executeCommand(c);
     }
     public GamingBuddyInterface includeLeaderBoard(GamingBuddyInterface g){
         return new LeaderboardDecorator(g);
@@ -45,7 +43,15 @@ public class Facade {
     public void connectPlayers(Player p1, Player p2, GamingBuddyInterface gMI){
         gMI.connectPlayers(p1, p2);
     }
-    public GamingSession getSession(String type){
-        return GamingSessionBuilder.builder().isMultiplayer(type).withStrategy(new MultiPlayerStrategy()).build();
+    public GamingSession getSession(SessionType sessionType) {
+        switch (sessionType) {
+            case MULTI:
+                return GamingSessionBuilder.builder().setMultiplayer(true).withStrategy(new MultiPlayerStrategy()).build();
+            case SINGLE:
+                return GamingSessionBuilder.builder().setMultiplayer(false).withStrategy(new SinglePlayerStrategy()).build();
+            default:
+                return null;
+        }
     }
+    
 }

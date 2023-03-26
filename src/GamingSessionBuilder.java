@@ -15,12 +15,8 @@ public class GamingSessionBuilder {
         this.strategy = strategy;
         return this;
     }
-    
-    public GamingSessionBuilder isMultiplayer(String strategyType) {
-        if(strategyType=="multi")
-            this.isMultiplayer = true;
-        else
-        this.isMultiplayer = false;
+    public GamingSessionBuilder setMultiplayer (boolean b) {
+        this.isMultiplayer=b;
         return this;
     }
     
@@ -29,6 +25,14 @@ public class GamingSessionBuilder {
             return new MultiPlayerSession();
         } else {
             return new SinglePlayerSession();
+        }
+    }
+    @Override
+    public String toString(){
+        if (isMultiplayer) {
+            return "[startegy: "+this.strategy+", isMultiplayer: true";
+        } else {
+            return "[startegy: "+this.strategy+", isMultiplayer: false";
         }
     }
 }

@@ -41,18 +41,22 @@ public class Main {
     
         CommandInvoker invoker = facade.cInvoker();
         Command inviteCommand = facade.getInviteCommand(player1, player2);
-        facade.setCommand(invoker, inviteCommand);
-        facade.executeCommand(invoker);
+        facade.executeCommand(invoker,inviteCommand);
     
         facade.connectPlayers(player1, player2, gamingBuddy);
     
         System.out.print("Enter session type (single/multi) : ");
+        GamingSession session;
         String sessionType = scanner.nextLine();
-        GamingSession session = facade.getSession(sessionType);
+        if(sessionType.equals("multi")){
+            session = facade.getSession(SessionType.MULTI);
+        }
+        else{
+            session = facade.getSession(SessionType.SINGLE);
+        }
         if (session != null) {
             Command startSessionCommand = facade.getStartSessionCommand(session);
-            facade.setCommand(invoker,startSessionCommand);
-            facade.executeCommand(invoker);
+            facade.executeCommand(invoker,startSessionCommand);
         } else {
             System.out.println("Invalid session type.");
         }
