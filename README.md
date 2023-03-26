@@ -1,1 +1,1 @@
-# CS4015_Project_Gaming_Buddy
+# Gaming_Buddy
